@@ -1,0 +1,13 @@
+
+
+Sources:
+
+OpenWeatherMap API: https://openweathermap.org/current
+Unsplash API: https://unsplash.com/
+Edamam Recpie Creator API: https://www.edamam.com/
+
+For this lab, I used a few APIs to create a simple website that displays weather data for Troy, NY, as well as recommends the user a few recipies based off the weather condition.
+
+To do this, I grabbed the weather condition string from the weather API that characterizes the general condition of the weather, and inserted that into my API call for Edamam, which
+essentially searches for recipes online based off many different search criterion. After receiving the search results back, I append them to my containers. I also have an Unsplash random 
+background image for fun.

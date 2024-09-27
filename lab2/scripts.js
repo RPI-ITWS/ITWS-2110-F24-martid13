@@ -29,8 +29,8 @@ fetch(
     const weatherCondition = data.weather[0].main;
     console.log("Weather condition:", weatherCondition);
 
-    //fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${weatherCondition}&app_id=47bdc2de&app_key=1925e691726351bfb627b4d25a96b277`)
-    fetch("recipies.json") 
+    fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${weatherCondition}&app_id=47bdc2de&app_key=1925e691726351bfb627b4d25a96b277`)
+    //fetch("recipies.json") 
       .then((response) => response.json())
       .then((data) => {
         const recipes = data.hits; // Access the recipes array

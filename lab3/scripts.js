@@ -22,7 +22,26 @@ fetch(
 document.getElementById("fetchWeatherBtn").addEventListener("click", function() {
   // fetch the weather data
   console.log("Fetching weather data...");
+  fetch("https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=0aaa0764d80ad5fd33dca15393bce371&units=imperial")
+  .then((response) => response.json())
+  .then(data => {
+  let iconCode = data.weather[0].icon;
+  let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    const weatherData = {
+      data_type: 'weather',
+      condition: data.weather[0].main,
+      description: data.weather[0].description,
+      icon: iconUrl,
+      temp: data.main.temp,
+      feels_like: data.main.feels_like,
+      temp_min: data.main.temp_min,
+      temp_max: data.main.temp_max
+    };
+
+    // then create post command to insertData.php (not created yet)
 });
+});
+
 document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
   // fetch the weather data
   console.log("Fetching recipe data...");

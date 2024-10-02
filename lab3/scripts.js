@@ -18,6 +18,17 @@ fetch(
     console.error("Error fetching image:", error);
   });
 
+// add functionality to api fetch buttons
+document.getElementById("fetchWeatherBtn").addEventListener("click", function() {
+  // fetch the weather data
+  console.log("Fetching weather data...");
+});
+document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
+  // fetch the weather data
+  console.log("Fetching recipe data...");
+});
+
+
 fetch(
   "https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=0aaa0764d80ad5fd33dca15393bce371&units=imperial"
 )

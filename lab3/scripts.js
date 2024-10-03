@@ -1,22 +1,25 @@
 console.log("JavaScript file is successfully linked and running!");
 
 //add background image
-fetch(
-  "https://api.unsplash.com/photos/random/?client_id=kGehtlR3bOADWbEr6gnMCBVvv8ObPbzuU7hFTB7_yKs"
-)
-  .then((response) => response.json())
-  .then((data) => {
-    // Set the background image of the body
-    document.body.style.backgroundImage = `url('${data.urls.regular}')`;
+// fetch(
+//   "https://api.unsplash.com/photos/random/?client_id=kGehtlR3bOADWbEr6gnMCBVvv8ObPbzuU7hFTB7_yKs"
+// )
+//   .then((response) => response.json())
+//   .then((data) => {
+//     // Set the background image of the body
+//     //document.body.style.backgroundImage = `url('${data.urls.regular}')`;
 
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundAttachment = "fixed"; 
-  })
-  .catch((error) => {
-    console.error("Error fetching image:", error);
-  });
+//     document.body.style.backgroundSize = "cover";
+//     document.body.style.backgroundPosition = "center";
+//     document.body.style.backgroundRepeat = "no-repeat";
+//     document.body.style.backgroundAttachment = "fixed"; 
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching image:", error);
+//   });
+
+// dummy background image
+document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6ac0d3-2026-4e7f-8310-e2d7a15b0027.jpg"}')`;
 
 // add functionality to api fetch buttons
 document.getElementById("fetchWeatherBtn").addEventListener("click", function() {

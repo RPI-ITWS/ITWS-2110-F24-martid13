@@ -46,8 +46,28 @@ document.getElementById("fetchWeatherBtn").addEventListener("click", function() 
 });
 
 document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
-  // fetch the weather data
+  // fetch the recipe data
   console.log("Fetching recipe data...");
+  //fetch("https://api.edamam.com/api/recipes/v2?type=public&q=$troy&app_id=47bdc2de&app_key=1925e691726351bfb627b4d25a96b277")
+  fetch("recipies.json") 
+  .then((response) => response.json())
+  .then(data => {
+    const recipeData = [];  // create array to be posted to insertData.php 
+    const recipes = data.hits; // Access the recipes array
+    recipes.slice(0, 6).forEach((recipeItem) => {
+      const recipe = recipeItem.recipe
+      recipeData.push({
+        url: recipe.url,
+        image_src: recipe.image,
+        label: recipe.label
+    });
+    });
+    // log recipe data to console for testing purposes
+    console.log(recipeData);
+
+
+    // then create post command to insertData.php (not created yet)
+});
 });
 
 

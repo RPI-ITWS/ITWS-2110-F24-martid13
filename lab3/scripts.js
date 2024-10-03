@@ -18,7 +18,7 @@ console.log("JavaScript file is successfully linked and running!");
 //     console.error("Error fetching image:", error);
 //   });
 
-// dummy background image
+// dummy background image again?
 document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6ac0d3-2026-4e7f-8310-e2d7a15b0027.jpg"}')`;
 
 // add functionality to api fetch buttons

@@ -197,34 +197,34 @@ fetch(
     console.log("Weather condition:", weatherCondition);
 
     //fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${weatherCondition}&app_id=47bdc2de&app_key=1925e691726351bfb627b4d25a96b277`)
-    fetch("recipies.json") 
-      .then((response) => response.json())
-      .then((data) => {
-        const recipes = data.hits; // Access the recipes array
-        const recipeContainer = document.getElementById("recipe-container");
+    // fetch("recipies.json") 
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     const recipes = data.hits; // Access the recipes array
+    //     const recipeContainer = document.getElementById("recipe-container");
 
-        // Loop through the first 6 recipes and display them
-        recipes.slice(0, 6).forEach((recipeItem) => {
-          const recipe = recipeItem.recipe;
-          const recipeBox = document.createElement("div");
-          recipeBox.classList.add("col-md-2", "mb-4"); 
+    //     // Loop through the first 6 recipes and display them
+    //     recipes.slice(0, 6).forEach((recipeItem) => {
+    //       const recipe = recipeItem.recipe;
+    //       const recipeBox = document.createElement("div");
+    //       recipeBox.classList.add("col-md-2", "mb-4"); 
 
-          // Populate the recipe box with image, title, and link
-          recipeBox.innerHTML = `
-                <div class="card">
-                    <a href="${recipe.url}" target="_blank">
-                        <img src="${recipe.image}" class="card-img-top" alt="${recipe.label}">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">${recipe.label}</h5>
-                    </div>
-                </div>
-            `;
+    //       // Populate the recipe box with image, title, and link
+    //       recipeBox.innerHTML = `
+    //             <div class="card">
+    //                 <a href="${recipe.url}" target="_blank">
+    //                     <img src="${recipe.image}" class="card-img-top" alt="${recipe.label}">
+    //                 </a>
+    //                 <div class="card-body">
+    //                     <h5 class="card-title">${recipe.label}</h5>
+    //                 </div>
+    //             </div>
+    //         `;
 
-          // Append the recipe box to the container
-          recipeContainer.appendChild(recipeBox);
-        });
-      });
+    //       // Append the recipe box to the container
+    //       recipeContainer.appendChild(recipeBox);
+    //     });
+    //   });
     // // Update the weather condition
     // document.getElementById("weather-main").textContent = data.weather[0].main; 
     // document.getElementById("weather-description").textContent =

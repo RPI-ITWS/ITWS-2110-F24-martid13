@@ -22,28 +22,68 @@ console.log("JavaScript file is successfully linked and running!");
 document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6ac0d3-2026-4e7f-8310-e2d7a15b0027.jpg"}')`;
 
 // add functionality to api fetch buttons
+// document.getElementById("fetchWeatherBtn").addEventListener("click", function() {
+//   // fetch the weather data
+//   console.log("Fetching weather data...");
+//   fetch("https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=0aaa0764d80ad5fd33dca15393bce371&units=imperial")
+//   .then((response) => response.json())
+//   .then(data => {
+//   let iconCode = data.weather[0].icon;
+//   let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+//     const weatherData = {
+//       data_type: 'weather',
+//       condition: data.weather[0].main,
+//       description: data.weather[0].description,
+//       icon: iconUrl,
+//       temp: data.main.temp,
+//       feels_like: data.main.feels_like,
+//       temp_min: data.main.temp_min,
+//       temp_max: data.main.temp_max
+//     };
+
+//     // then create post command to insertData.php
+//     fetch("insertData.php", {
+//       method: "POST", 
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(weatherData)
+//     })
+//     .then(response => response.json())
+//     .then(result => {
+//       console.log("Success:", result);
+//     });
+// });
+// });
+
 document.getElementById("fetchWeatherBtn").addEventListener("click", function() {
-  // fetch the weather data
   console.log("Fetching weather data...");
+  
+  // Fetch weather data from the API
   fetch("https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=0aaa0764d80ad5fd33dca15393bce371&units=imperial")
   .then((response) => response.json())
   .then(data => {
-  let iconCode = data.weather[0].icon;
-  let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-    const weatherData = {
-      data_type: 'weather',
-      condition: data.weather[0].main,
-      description: data.weather[0].description,
-      icon: iconUrl,
-      temp: data.main.temp,
-      feels_like: data.main.feels_like,
-      temp_min: data.main.temp_min,
-      temp_max: data.main.temp_max
-    };
+    // Now send the entire weather JSON data to insertData.php
+    fetch("insertData.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data_type: 'weather',  // Tag this as weather data
+        weather_json: data     // Send the full JSON object from the API
+      })
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log("Weather JSON inserted successfully:", result);
+    })
+    .catch(error => {
+      console.error("AHHH!!!:", error);
+    });
+  })
+});
 
-    // then create post command to insertData.php (not created yet)
-});
-});
 
 document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
   // fetch the recipe data

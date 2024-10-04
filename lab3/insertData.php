@@ -45,7 +45,7 @@ if ($data['data_type'] == 'weather') {
     // Close the statement
     $stmt->close();
 
-} else if ($data[0]['data_type'] == 'recipe') {
+} else if ($data['data_type'] == 'recipe') {
 
     // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO recipes 

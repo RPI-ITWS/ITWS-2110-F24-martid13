@@ -138,17 +138,31 @@ document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
   fetch("recipies.json") 
   .then((response) => response.json())
   .then(data => {
-    const recipeData = [];  // create array to be posted to insertData.php 
-    const recipes = data.hits; // Access the recipes array
-    recipes.slice(0, 6).forEach((recipeItem) => {
-      const recipe = recipeItem.recipe
-      recipeData.push({
-        data_type: 'recipe',
-        url: recipe.url,
-        image_src: recipe.image,
-        label: recipe.label
-    });
-    });
+    const recipes = data.hits.slice(0, 6);  // Get first 6 recipes
+    
+    // create recipeData json
+    const recipeData = {
+      data_type: 'recipe',
+      recipe1Url: recipes[0].recipe.url,
+      recipe1Label: recipes[0].recipe.label,
+      recipe1Image: recipes[0].recipe.image,
+      recipe2Url: recipes[1].recipe.url,
+      recipe2Label: recipes[1].recipe.label,
+      recipe2Image: recipes[1].recipe.image,
+      recipe3Url: recipes[2].recipe.url,
+      recipe3Label: recipes[2].recipe.label,
+      recipe3Image: recipes[2].recipe.image,
+      recipe4Url: recipes[3].recipe.url,
+      recipe4Label: recipes[3].recipe.label,
+      recipe4Image: recipes[3].recipe.image,
+      recipe5Url: recipes[4].recipe.url,
+      recipe5Label: recipes[4].recipe.label,
+      recipe5Image: recipes[4].recipe.image,
+      recipe6Url: recipes[5].recipe.url,
+      recipe6Label: recipes[5].recipe.label,
+      recipe6Image: recipes[5].recipe.image
+    };
+
     // log recipe data to console for testing purposes
     console.log(recipeData);
         // Send the recipe data to insertData.php

@@ -48,7 +48,14 @@ if ($data['data_type'] == 'weather') {
 } else if ($data[0]['data_type'] == 'recipe') {
 
     // Prepare and bind the SQL statement
-    $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO recipes 
+        (recipe1Url, recipe1Label, recipe1Image, 
+         recipe2Url, recipe2Label, recipe2Image, 
+         recipe3Url, recipe3Label, recipe3Image, 
+         recipe4Url, recipe4Label, recipe4Image, 
+         recipe5Url, recipe5Label, recipe5Image, 
+         recipe6Url, recipe6Label, recipe6Image) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     // post to console to indicate program recognizes it received recipes
     echo json_encode(["success" => true, "message" => "Recipe data received."]);
@@ -58,30 +65,27 @@ if ($data['data_type'] == 'weather') {
         exit;
     }
 
-    foreach ($data as $recipe) {
-        // Log each recipe's data before binding to check values
-        error_log("Inserting Recipe: URL: " . $recipe['url'] . " Label: " . $recipe['label'] . " Image: " . $recipe['image_src']);
-        
-        $stmt->bind_param(
-            "sss",
-            $recipe['url'],
-            $recipe['label'],
-            $recipe['image_src']
-        );
+    // Bind all 6 recipes to the respective columns
+    $stmt->bind_param(
+        "ssssssssssssssssss",
+        $data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
+        $data['recipe2Url'], $data['recipe2Label'], $data['recipe2Image'],
+        $data['recipe3Url'], $data['recipe3Label'], $data['recipe3Image'],
+        $data['recipe4Url'], $data['recipe4Label'], $data['recipe4Image'],
+        $data['recipe5Url'], $data['recipe5Label'], $data['recipe5Image'],
+        $data['recipe6Url'], $data['recipe6Label'], $data['recipe6Image']
+    );
 
-        // Execute the statement
-        if (!$stmt->execute()) {
-            echo json_encode(["success" => false, "message" => "Failed to execute statement: " . $stmt->error]);
-            exit;
-        }
+    if ($stmt->execute()) {
+        echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
+    } else {
+        echo json_encode(["success" => false, "message" => "Failed to execute statement: " . $stmt->error]);
     }
 
-    echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
+    
     $stmt->close();
+} else {
+    echo json_encode(["success" => false, "message" => "Invalid data type or missing data."]);
 }
 
-
-
-// Close the connection
 $conn->close();
-?>

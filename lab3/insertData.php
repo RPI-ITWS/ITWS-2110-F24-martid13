@@ -1,8 +1,21 @@
 <?php
+// Enable error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 header("Content-Type: application/json");
 
+// Custom error handler to capture errors and output them as JSON
+function handleError($errno, $errstr, $errfile, $errline) {
+    echo json_encode([
+        "success" => false,
+        "message" => "PHP Error: [$errno] $errstr in $errfile on line $errline"
+    ]);
+    exit;
+}
+
+set_error_handler("handleError");
+
+// Database connection
 $servername = "localhost:3306";
 $username = "phpmyadmin";
 $password = "websyssql";
@@ -23,14 +36,13 @@ $data = json_decode($input, true);
 
 // Check if JSON decoding failed
 if (json_last_error() !== JSON_ERROR_NONE) {
-    echo json_encode(["status" => "error", "message" => "JSON decode error: " . json_last_error_msg()]);
+    echo json_encode(["status" => "error", "message" => "JSON Decode Error: " . json_last_error_msg()]);
     exit;
 }
 
-// Check if the data is for weather
+// Process the data for weather or recipes
 if ($data['data_type'] == 'weather') {
-
-    // Prepare and bind the SQL statement
+    // Prepare the weather insert statement
     $stmt = $conn->prepare("INSERT INTO api_data (weather_condition, weather_description, weather_icon_src, temperature, feels_like, temp_min, temp_max) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     if ($stmt === false) {
@@ -49,18 +61,17 @@ if ($data['data_type'] == 'weather') {
         $data['temp_max']
     );
 
-    // Execute the prepared statement
-    if ($stmt->execute()) {
-        echo json_encode(["success" => true, "message" => "Weather data inserted successfully."]);
-    } else {
+    // Execute the statement
+    if (!$stmt->execute()) {
         echo json_encode(["success" => false, "message" => "Error inserting weather data: " . $stmt->error]);
+        exit;
     }
 
+    echo json_encode(["success" => true, "message" => "Weather data inserted successfully."]);
     $stmt->close();
 
 } else if ($data['data_type'] == 'recipe') {
-
-    // Ensure all required recipe keys are present
+    // Check if all required recipe keys are present
     if (!isset($data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
               $data['recipe2Url'], $data['recipe2Label'], $data['recipe2Image'],
               $data['recipe3Url'], $data['recipe3Label'], $data['recipe3Image'],
@@ -87,6 +98,7 @@ if ($data['data_type'] == 'weather') {
         exit;
     }
 
+    // Bind the parameters for all recipes
     if (!$stmt->bind_param(
         "ssssssssssssssssss",
         $data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
@@ -100,6 +112,7 @@ if ($data['data_type'] == 'weather') {
         exit;
     }
 
+    // Execute the statement
     if (!$stmt->execute()) {
         echo json_encode(["success" => false, "message" => "Failed to execute recipe statement: " . $stmt->error]);
         exit;
@@ -113,4 +126,3 @@ if ($data['data_type'] == 'weather') {
 }
 
 $conn->close();
-?>

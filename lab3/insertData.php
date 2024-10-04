@@ -50,21 +50,30 @@ if ($data['data_type'] == 'weather') {
     // post to console to indicate program recognizes it received recipes
     echo json_encode(["success" => true, "message" => "Recipe data received."]);
 
-    // // Prepare and bind the SQL statement
-    // $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
+    // Prepare and bind the SQL statement
+    $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
 
-    // foreach ($data as $recipe) {
-    //     $stmt->bind_param(
-    //         "sss",
-    //         $recipe['url'],
-    //         $recipe['label'],
-    //         $recipe['image_src']
-    //     );
-    //     $stmt->execute();
-    // }
+    if ($stmt === false) {
+        echo json_encode(["success" => false, "message" => "Failed to prepare statement: " . $conn->error]);
+        exit;
+    }
 
-    // echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
-    // $stmt->close();
+    foreach ($data as $recipe) {
+        $stmt->bind_param(
+            "sss",
+            $recipe['url'],
+            $recipe['label'],
+            $recipe['image_src']
+        );
+        // Execute the statement
+        if (!$stmt->execute()) {
+            echo json_encode(["success" => false, "message" => "Failed to execute statement: " . $stmt->error]);
+            exit;
+        }
+    }
+
+    echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
+    $stmt->close();
 
 
 

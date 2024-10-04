@@ -22,5 +22,29 @@ $data = json_decode($input, true);
 $query = "SELECT * FROM api_data ORDER BY id DESC LIMIT 1"; // This will get the most recent entry
 $result = $conn->query($query);
 
+// Check if any data was retrieved
+if ($result->num_rows > 0) {
+    // Fetch the data
+    $row = $result->fetch_assoc();
+    // Return the data as JSON
+    echo json_encode([
+        "weather" => [
+            [
+                "main" => $row['weather_condition'],
+                "description" => $row['weather_description'],
+                "icon" => $row['weather_icon_src']
+            ]
+        ],
+        "main" => [
+            "temp" => $row['temperature'],
+            "feels_like" => $row['feels_like'],
+            "temp_min" => $row['temp_min'],
+            "temp_max" => $row['temp_max']
+        ]
+    ]);
+} else {
+    echo json_encode(["status" => "error", "message" => "No weather data found"]);
+}
+
 $conn->close();
 ?>

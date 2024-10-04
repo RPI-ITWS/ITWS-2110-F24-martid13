@@ -222,12 +222,13 @@ document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
     .then(response => response.json())
     .then(result => {
       console.log("Recipe data inserted:", result);
-    })
-    .catch(error => {
-      console.error("Error inserting recipe data:", error);
       if (result.success) {
         fetchAndDisplayRecipes();
       }
+    })
+    .catch(error => {
+      console.error("Error inserting recipe data:", error);
+ 
     });
     });
 });

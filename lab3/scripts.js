@@ -56,6 +56,32 @@ document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6
 // });
 // });
 
+function fetchAndDisplayWeather() {
+  fetch("fetchWeatherData.php") // Adjust the path if necessary
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Fetched weather data from DB:", data);
+
+      // Update the weather condition
+      document.getElementById("weather-main").textContent = data.weather[0].main;
+      document.getElementById("weather-description").textContent = data.weather[0].description;
+
+      // Update the weather icon
+      let iconUrl = data.weather[0].icon;
+      document.getElementById("weather-icon").src = iconUrl;
+
+      // Update the temperature details
+      document.getElementById("temp").textContent = `${data.main.temp}°F`;
+      document.getElementById("feels-like").textContent = `${data.main.feels_like}°F`;
+      document.getElementById("temp-min").textContent = `${data.main.temp_min}°F`;
+      document.getElementById("temp-max").textContent = `${data.main.temp_max}°F`;
+    })
+    .catch((error) => {
+      console.error("Error fetching weather data:", error);
+    });
+}
+
+
 document.getElementById("fetchWeatherBtn").addEventListener("click", function() {
   console.log("Fetching weather data...");
   
@@ -90,7 +116,7 @@ document.getElementById("fetchWeatherBtn").addEventListener("click", function() 
     .then(result => {
       if (result.success) {
         console.log("Weather JSON inserted successfully:", result);
-        // THEN, do the fetch to pull the stuff back and insert into HTML
+        fetchAndDisplayWeather();
       }
     })
     .catch(error => {
@@ -166,21 +192,21 @@ fetch(
           recipeContainer.appendChild(recipeBox);
         });
       });
-    // Update the weather condition
-    document.getElementById("weather-main").textContent = data.weather[0].main; 
-    document.getElementById("weather-description").textContent =
-      data.weather[0].description; 
+    // // Update the weather condition
+    // document.getElementById("weather-main").textContent = data.weather[0].main; 
+    // document.getElementById("weather-description").textContent =
+    //   data.weather[0].description; 
 
-    // Update the weather icon
-    let iconCode = data.weather[0].icon;
-    let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-    document.getElementById("weather-icon").src = iconUrl;
+    // // Update the weather icon
+    // let iconCode = data.weather[0].icon;
+    // let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    // document.getElementById("weather-icon").src = iconUrl;
 
-    // Update the temperature details
-    document.getElementById("temp").textContent = `${data.main.temp}°F`; 
-    document.getElementById(
-      "feels-like"
-    ).textContent = `${data.main.feels_like}°F`; 
-    document.getElementById("temp-min").textContent = `${data.main.temp_min}°F`; 
-    document.getElementById("temp-max").textContent = `${data.main.temp_max}°F`;
+    // // Update the temperature details
+    // document.getElementById("temp").textContent = `${data.main.temp}°F`; 
+    // document.getElementById(
+    //   "feels-like"
+    // ).textContent = `${data.main.feels_like}°F`; 
+    // document.getElementById("temp-min").textContent = `${data.main.temp_min}°F`; 
+    // document.getElementById("temp-max").textContent = `${data.main.temp_max}°F`;
   });

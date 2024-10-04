@@ -47,8 +47,6 @@ if ($data['data_type'] == 'weather') {
 
 } else if ($data[0]['data_type'] == 'recipe') {
 
-
-
     // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
 
@@ -61,12 +59,16 @@ if ($data['data_type'] == 'weather') {
     }
 
     foreach ($data as $recipe) {
+        // Log each recipe's data before binding to check values
+        error_log("Inserting Recipe: URL: " . $recipe['url'] . " Label: " . $recipe['label'] . " Image: " . $recipe['image_src']);
+        
         $stmt->bind_param(
             "sss",
             $recipe['url'],
             $recipe['label'],
             $recipe['image_src']
         );
+
         // Execute the statement
         if (!$stmt->execute()) {
             echo json_encode(["success" => false, "message" => "Failed to execute statement: " . $stmt->error]);
@@ -76,10 +78,8 @@ if ($data['data_type'] == 'weather') {
 
     echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
     $stmt->close();
-
-
-
 }
+
 
 
 // Close the connection

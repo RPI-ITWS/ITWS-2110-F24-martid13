@@ -107,7 +107,7 @@ document.getElementById("fetchWeatherBtn").addEventListener("click", function() 
     temp_min: data.main.temp_min,
     temp_max: data.main.temp_max
     };
-    console.log("Weather data:", weatherData);
+    console.log("Weather JSON Built:", weatherData);
     // Now send the entire weather JSON data to insertData.php
     fetch("insertData.php", {
       method: "POST",
@@ -164,7 +164,7 @@ document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
     };
 
     // log recipe data to console for testing purposes
-    console.log(recipeData);
+    console.log("Recipe JSON Built:", recipeData);
         // Send the recipe data to insertData.php
     fetch("insertData.php", {
       method: "POST",

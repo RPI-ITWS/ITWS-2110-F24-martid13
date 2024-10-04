@@ -57,10 +57,7 @@ if ($data['data_type'] == 'weather') {
             $recipe['label'],
             $recipe['image_src']
         );
-        if (!$stmt->execute()) {
-            echo json_encode(["success" => false, "message" => "Error inserting recipe data: " . $stmt->error]);
-            exit;
-        }
+        $stmt->execute();
     }
 
     echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);

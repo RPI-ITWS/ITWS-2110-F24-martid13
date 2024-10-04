@@ -171,7 +171,8 @@ document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(recipeData) // Send the recipe array
+      // send the weather data to insertData.php
+      body: JSON.stringify(recipeData)
     })
     .then(response => response.json())
     .then(result => {

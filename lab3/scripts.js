@@ -76,6 +76,7 @@ document.getElementById("fetchWeatherBtn").addEventListener("click", function() 
     temp_min: data.main.temp_min,
     temp_max: data.main.temp_max
     };
+    console.log("Weather data:", weatherData);
     // Now send the entire weather JSON data to insertData.php
     fetch("insertData.php", {
       method: "POST",

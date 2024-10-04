@@ -9,30 +9,46 @@ $dbname = "lab03";
 // initialize connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// check connection
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode(["status" => "error", "message" => "Connection failed: " . $conn->connect_error]));
 }
-// if connection is successful
-echo "Connected successfully";
 
+// Get the input data
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
-// check data type
+// Check if the data is for weather
 if ($data['data_type'] == 'weather') {
-    echo "Data type is weather";
-    $weather_json = json_encode($data['weather_json']); // Make sure this is JSON encoded
-    $query = "INSERT INTO weather_data (weather_json) VALUES ('$weather_json')";
-    if ($conn->query($query) === TRUE) {
-        echo json_encode(["status" => "success", "message" => "Weather data inserted successfully."]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Error inserting weather data: " . $conn->error]);
-    }
-} else {
-    echo json_encode(["status" => "error", "message" => "Invalid data type received."]);
 
+    // Prepare and bind the SQL statement
+    $stmt = $conn->prepare("INSERT INTO api_data (weather_condition, weather_description, weather_icon_src, temperature, feels_like, temp_min, temp_max) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+    $stmt->bind_param(
+        "sssssss",
+        $data['condition'],
+        $data['description'],
+        $data['icon'],
+        $data['temp'],
+        $data['feels_like'],
+        $data['temp_min'],
+        $data['temp_max']
+    );
+
+    // Execute the prepared statement
+    if ($stmt->execute()) {
+        echo json_encode(["success" => true, "message" => "Weather data inserted successfully."]);
+    } else {
+        echo json_encode(["success" => false, "message" => "Error inserting weather data: " . $stmt->error]);
+    }
+
+    // Close the statement
+    $stmt->close();
+
+} else {
+    echo json_encode(["success" => false, "message" => "Invalid data type received."]);
 }
 
+// Close the connection
 $conn->close();
 ?>

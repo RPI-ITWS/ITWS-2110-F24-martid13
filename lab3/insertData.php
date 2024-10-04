@@ -47,34 +47,27 @@ if ($data['data_type'] == 'weather') {
 
 } else if ($data[0]['data_type'] == 'recipe') {
 
-    // Prepare and bind the SQL statement
-    $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
+    // post to console to indicate program recognizes it received recipes
+    echo json_encode(["success" => true, "message" => "Recipe data received."]);
 
-    foreach ($data as $recipe) {
-        $stmt->bind_param(
-            "sss",
-            $recipe['url'],
-            $recipe['label'],
-            $recipe['image_src']
-        );
-        $stmt->execute();
-    }
+    // // Prepare and bind the SQL statement
+    // $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
 
-    echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
-    $stmt->close();
+    // foreach ($data as $recipe) {
+    //     $stmt->bind_param(
+    //         "sss",
+    //         $recipe['url'],
+    //         $recipe['label'],
+    //         $recipe['image_src']
+    //     );
+    //     $stmt->execute();
+    // }
+
+    // echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
+    // $stmt->close();
 
 
-    // Bind the parameters
-    // $stmt->bind_param(
-    //     "sss",
-    //     $data['condition'],
-    //     $data['description'],
-    //     $data['icon'],
-    //     $data['temp'],
-    //     $data['feels_like'],
-    //     $data['temp_min'],
-    //     $data['temp_max']
-    //);
+
 }
 
 

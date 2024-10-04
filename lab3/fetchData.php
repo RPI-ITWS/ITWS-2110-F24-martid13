@@ -1,5 +1,5 @@
 <?php
-header("Content-Type: application/json");
+header(header: "Content-Type: application/json");
 
 $servername = "localhost:3306";
 $username = "phpmyadmin";

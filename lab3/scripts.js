@@ -82,6 +82,10 @@ function fetchAndDisplayWeather() {
     });
 }
 
+function fetchAndDisplayRecipes() {
+  console.log("Called fetchAndDisplayReceipes()");
+}
+
 
 document.getElementById("fetchWeatherBtn").addEventListener("click", function() {
   console.log("Fetching weather data...");
@@ -139,6 +143,7 @@ document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
     recipes.slice(0, 6).forEach((recipeItem) => {
       const recipe = recipeItem.recipe
       recipeData.push({
+        data_type: 'recipe',
         url: recipe.url,
         image_src: recipe.image,
         label: recipe.label
@@ -146,10 +151,22 @@ document.getElementById("fetchRecipeBtn").addEventListener("click", function() {
     });
     // log recipe data to console for testing purposes
     console.log(recipeData);
-
-
-    // then create post command to insertData.php (not created yet)
-});
+        // Send the recipe data to insertData.php
+    fetch("insertData.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(recipeData) // Send the recipe array
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log("Recipe data inserted:", result);
+    })
+    .catch(error => {
+      console.error("Error inserting recipe data:", error);
+    });
+    });
 });
 
 

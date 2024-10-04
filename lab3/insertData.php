@@ -13,18 +13,30 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    die(json_encode(["status" => "error", "message" => "Connection failed: " . $conn->connect_error]));
+    echo json_encode(["status" => "error", "message" => "Connection failed: " . $conn->connect_error]);
+    exit;
 }
 
 // Get the input data
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
+// Check if JSON decoding failed
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo json_encode(["status" => "error", "message" => "JSON decode error: " . json_last_error_msg()]);
+    exit;
+}
+
 // Check if the data is for weather
 if ($data['data_type'] == 'weather') {
 
     // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO api_data (weather_condition, weather_description, weather_icon_src, temperature, feels_like, temp_min, temp_max) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+    if ($stmt === false) {
+        echo json_encode(["success" => false, "message" => "Failed to prepare weather statement: " . $conn->error]);
+        exit;
+    }
 
     $stmt->bind_param(
         "sssssss",
@@ -44,12 +56,11 @@ if ($data['data_type'] == 'weather') {
         echo json_encode(["success" => false, "message" => "Error inserting weather data: " . $stmt->error]);
     }
 
-    // Close the statement
     $stmt->close();
 
 } else if ($data['data_type'] == 'recipe') {
 
-    // Check if all required recipe keys are present
+    // Ensure all required recipe keys are present
     if (!isset($data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
               $data['recipe2Url'], $data['recipe2Label'], $data['recipe2Image'],
               $data['recipe3Url'], $data['recipe3Label'], $data['recipe3Image'],
@@ -61,7 +72,7 @@ if ($data['data_type'] == 'weather') {
         exit;
     }
 
-    // Prepare and bind the SQL statement
+    // Prepare and bind the SQL statement for recipes
     $stmt = $conn->prepare("INSERT INTO recipes 
         (recipe1Url, recipe1Label, recipe1Image, 
          recipe2Url, recipe2Label, recipe2Image, 
@@ -71,13 +82,11 @@ if ($data['data_type'] == 'weather') {
          recipe6Url, recipe6Label, recipe6Image) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // Check if the SQL statement prepared successfully
     if ($stmt === false) {
-        echo json_encode(["success" => false, "message" => "Failed to prepare statement: " . $conn->error]);
+        echo json_encode(["success" => false, "message" => "Failed to prepare recipe statement: " . $conn->error]);
         exit;
     }
 
-    // Bind all 6 recipes to the respective columns
     if (!$stmt->bind_param(
         "ssssssssssssssssss",
         $data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
@@ -87,13 +96,12 @@ if ($data['data_type'] == 'weather') {
         $data['recipe5Url'], $data['recipe5Label'], $data['recipe5Image'],
         $data['recipe6Url'], $data['recipe6Label'], $data['recipe6Image']
     )) {
-        echo json_encode(["success" => false, "message" => "Failed to bind parameters: " . $stmt->error]);
+        echo json_encode(["success" => false, "message" => "Failed to bind recipe parameters: " . $stmt->error]);
         exit;
     }
 
-    // Execute the SQL statement
     if (!$stmt->execute()) {
-        echo json_encode(["success" => false, "message" => "Failed to execute statement: " . $stmt->error]);
+        echo json_encode(["success" => false, "message" => "Failed to execute recipe statement: " . $stmt->error]);
         exit;
     }
 

@@ -56,6 +56,92 @@ document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6
 // });
 // });
 
+
+function updateWeatherData() {
+  let weatherData = {
+    data_type: 'weather',
+    weather_condition: document.getElementById("edit-weather-condition").value || null,
+    weather_description: document.getElementById("edit-weather-description").value || null,
+    weather_icon_src: document.getElementById("edit-weather-icon").value || null,
+    temperature: document.getElementById("edit-weather-temp").value || null,
+    feels_like: document.getElementById("edit-weather-feels-like").value || null,
+    temp_min: document.getElementById("edit-weather-temp-min").value || null,
+    temp_max: document.getElementById("edit-weather-temp-max").value || null
+  };
+
+  // Send the updated weather data to PHP
+  fetch("updateData.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(weatherData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log("Weather data updated successfully:", data);
+        fetchAndDisplayWeather(); // Call the function that fetches and displays the weather
+      } else {
+        console.error("Error updating weather data:", data.message);
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+}
+
+function updateRecipeData() {
+  let recipeData = {
+    data_type: 'recipe',
+    recipe1Label: document.getElementById("edit-recipe-title-1").value || null,
+    recipe2Label: document.getElementById("edit-recipe-title-2").value || null,
+    recipe3Label: document.getElementById("edit-recipe-title-3").value || null,
+    recipe4Label: document.getElementById("edit-recipe-title-4").value || null,
+    recipe5Label: document.getElementById("edit-recipe-title-5").value || null,
+    recipe6Label: document.getElementById("edit-recipe-title-6").value || null
+  };
+
+  // Send the updated recipe data to PHP
+  fetch("updateData.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(recipeData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log("Recipe data updated successfully:", data);
+        fetchAndDisplayRecipes(); // Call the function that fetches and displays the recipes
+      } else {
+        console.error("Error updating recipe data:", data.message);
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+}
+
+
+// Event listener for Enter key press on both weather and recipe input fields
+document.querySelectorAll('.inline-inputs input').forEach(input => {
+  input.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+      // Check if the input belongs to weather or recipe
+      if (this.id.startsWith('edit-weather')) {
+        console.log("Weather field edited. Calling updateWeatherData...");
+        updateWeatherData(); // Call updateWeatherData when Enter is pressed in weather fields
+      } else if (this.id.startsWith('edit-recipe')) {
+        console.log("Recipe field edited. Calling updateRecipeData...");
+        updateRecipeData(); // Call updateRecipeData when Enter is pressed in recipe fields
+      }
+    }
+  });
+});
+
+
 function fetchAndDisplayWeather() {
   console.log("Called fetchAndDisplayWeather()");
   fetch("fetchData.php") // Adjust the path if necessary

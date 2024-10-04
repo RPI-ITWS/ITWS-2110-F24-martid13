@@ -47,11 +47,13 @@ if ($data['data_type'] == 'weather') {
 
 } else if ($data[0]['data_type'] == 'recipe') {
 
-    // post to console to indicate program recognizes it received recipes
-    echo json_encode(["success" => true, "message" => "Recipe data received."]);
+
 
     // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
+
+    // post to console to indicate program recognizes it received recipes
+    echo json_encode(["success" => true, "message" => "Recipe data received."]);
 
     if ($stmt === false) {
         echo json_encode(["success" => false, "message" => "Failed to prepare statement: " . $conn->error]);

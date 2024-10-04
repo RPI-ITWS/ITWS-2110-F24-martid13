@@ -57,7 +57,7 @@ document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6
 // });
 
 function fetchAndDisplayWeather() {
-  fetch("fetchWeatherData.php") // Adjust the path if necessary
+  fetch("fetchData.php") // Adjust the path if necessary
     .then((response) => response.json())
     .then((data) => {
       console.log("Fetched weather data from DB:", data);

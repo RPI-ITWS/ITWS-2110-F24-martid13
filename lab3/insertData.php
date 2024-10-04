@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 header("Content-Type: application/json");
 
 $servername = "localhost:3306";
@@ -6,7 +8,7 @@ $username = "phpmyadmin";
 $password = "websyssql";
 $dbname = "lab03";
 
-// initialize connection
+// Initialize connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -47,6 +49,18 @@ if ($data['data_type'] == 'weather') {
 
 } else if ($data['data_type'] == 'recipe') {
 
+    // Check if all required recipe keys are present
+    if (!isset($data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
+              $data['recipe2Url'], $data['recipe2Label'], $data['recipe2Image'],
+              $data['recipe3Url'], $data['recipe3Label'], $data['recipe3Image'],
+              $data['recipe4Url'], $data['recipe4Label'], $data['recipe4Image'],
+              $data['recipe5Url'], $data['recipe5Label'], $data['recipe5Image'],
+              $data['recipe6Url'], $data['recipe6Label'], $data['recipe6Image'])) {
+        
+        echo json_encode(["success" => false, "message" => "Missing recipe data."]);
+        exit;
+    }
+
     // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO recipes 
         (recipe1Url, recipe1Label, recipe1Image, 
@@ -57,16 +71,14 @@ if ($data['data_type'] == 'weather') {
          recipe6Url, recipe6Label, recipe6Image) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // post to console to indicate program recognizes it received recipes
-    echo json_encode(["success" => true, "message" => "Recipe data received."]);
-
+    // Check if the SQL statement prepared successfully
     if ($stmt === false) {
         echo json_encode(["success" => false, "message" => "Failed to prepare statement: " . $conn->error]);
         exit;
     }
 
     // Bind all 6 recipes to the respective columns
-    $stmt->bind_param(
+    if (!$stmt->bind_param(
         "ssssssssssssssssss",
         $data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
         $data['recipe2Url'], $data['recipe2Label'], $data['recipe2Image'],
@@ -74,17 +86,23 @@ if ($data['data_type'] == 'weather') {
         $data['recipe4Url'], $data['recipe4Label'], $data['recipe4Image'],
         $data['recipe5Url'], $data['recipe5Label'], $data['recipe5Image'],
         $data['recipe6Url'], $data['recipe6Label'], $data['recipe6Image']
-    );
-
-    if ($stmt->execute()) {
-        echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
-    } else {
-        echo json_encode(["success" => false, "message" => "Failed to execute statement: " . $stmt->error]);
+    )) {
+        echo json_encode(["success" => false, "message" => "Failed to bind parameters: " . $stmt->error]);
+        exit;
     }
 
-    
+    // Execute the SQL statement
+    if (!$stmt->execute()) {
+        echo json_encode(["success" => false, "message" => "Failed to execute statement: " . $stmt->error]);
+        exit;
+    }
+
+    echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
     $stmt->close();
+
 } else {
+    echo json_encode(["success" => false, "message" => "Invalid data type or missing data."]);
 }
 
 $conn->close();
+?>

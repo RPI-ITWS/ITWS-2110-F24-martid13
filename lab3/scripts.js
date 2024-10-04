@@ -63,20 +63,34 @@ document.getElementById("fetchWeatherBtn").addEventListener("click", function() 
   fetch("https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=0aaa0764d80ad5fd33dca15393bce371&units=imperial")
   .then((response) => response.json())
   .then(data => {
+    // make the weather stuff array here (parse it)
+    let iconCode = data.weather[0].icon;
+    let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    const weatherData = {
+    data_type: 'weather',
+    condition: data.weather[0].main,
+    description: data.weather[0].description,
+    icon: iconUrl,
+    temp: data.main.temp,
+    feels_like: data.main.feels_like,
+    temp_min: data.main.temp_min,
+    temp_max: data.main.temp_max
+    };
     // Now send the entire weather JSON data to insertData.php
     fetch("insertData.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        data_type: 'weather',  // Tag this as weather data
-        weather_json: data     // Send the full JSON object from the API
-      })
+      // send the weather data to insertData.php
+      body: JSON.stringify(weatherData)
     })
     .then(response => response.json())
     .then(result => {
-      console.log("Weather JSON inserted successfully:", result);
+      if (result.success) {
+        console.log("Weather JSON inserted successfully:", result);
+        // THEN, do the fetch to pull the stuff back and insert into HTML
+      }
     })
     .catch(error => {
       console.error("AHHH!!!:", error);

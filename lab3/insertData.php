@@ -85,7 +85,6 @@ if ($data['data_type'] == 'weather') {
     
     $stmt->close();
 } else {
-    echo json_encode(["success" => false, "message" => "Invalid data type or missing data."]);
 }
 
 $conn->close();

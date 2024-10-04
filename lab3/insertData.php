@@ -45,7 +45,7 @@ if ($data['data_type'] == 'weather') {
     // Close the statement
     $stmt->close();
 
-} else if ($data['data_type'] == 'recipe') {
+} else if ($data[0]['data_type'] == 'recipe') {
 
     // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO recipes (recipeUrl, recipeLabel, recipeImage) VALUES (?, ?, ?)");
@@ -57,9 +57,12 @@ if ($data['data_type'] == 'weather') {
             $recipe['label'],
             $recipe['image_src']
         );
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            echo json_encode(["success" => false, "message" => "Error inserting recipe data: " . $stmt->error]);
+            exit;
+        }
     }
-    
+
     echo json_encode(["success" => true, "message" => "Recipe data inserted successfully."]);
     $stmt->close();
 

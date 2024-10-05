@@ -5,7 +5,8 @@ error_reporting(E_ALL);
 header("Content-Type: application/json");
 
 // Custom error handler to capture errors and output them as JSON
-function handleError($errno, $errstr, $errfile, $errline) {
+function handleError($errno, $errstr, $errfile, $errline)
+{
     echo json_encode([
         "success" => false,
         "message" => "PHP Error: [$errno] $errstr in $errfile on line $errline"
@@ -72,13 +73,29 @@ if ($data['data_type'] == 'weather') {
 
 } else if ($data['data_type'] == 'recipe') {
     // Check if all required recipe keys are present
-    if (!isset($data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
-              $data['recipe2Url'], $data['recipe2Label'], $data['recipe2Image'],
-              $data['recipe3Url'], $data['recipe3Label'], $data['recipe3Image'],
-              $data['recipe4Url'], $data['recipe4Label'], $data['recipe4Image'],
-              $data['recipe5Url'], $data['recipe5Label'], $data['recipe5Image'],
-              $data['recipe6Url'], $data['recipe6Label'], $data['recipe6Image'])) {
-        
+    if (
+        !isset(
+        $data['recipe1Url'],
+        $data['recipe1Label'],
+        $data['recipe1Image'],
+        $data['recipe2Url'],
+        $data['recipe2Label'],
+        $data['recipe2Image'],
+        $data['recipe3Url'],
+        $data['recipe3Label'],
+        $data['recipe3Image'],
+        $data['recipe4Url'],
+        $data['recipe4Label'],
+        $data['recipe4Image'],
+        $data['recipe5Url'],
+        $data['recipe5Label'],
+        $data['recipe5Image'],
+        $data['recipe6Url'],
+        $data['recipe6Label'],
+        $data['recipe6Image']
+    )
+    ) {
+
         echo json_encode(["success" => false, "message" => "Missing recipe data."]);
         exit;
     }
@@ -99,15 +116,29 @@ if ($data['data_type'] == 'weather') {
     }
 
     // Bind the parameters for all recipes
-    if (!$stmt->bind_param(
-        "ssssssssssssssssss",
-        $data['recipe1Url'], $data['recipe1Label'], $data['recipe1Image'],
-        $data['recipe2Url'], $data['recipe2Label'], $data['recipe2Image'],
-        $data['recipe3Url'], $data['recipe3Label'], $data['recipe3Image'],
-        $data['recipe4Url'], $data['recipe4Label'], $data['recipe4Image'],
-        $data['recipe5Url'], $data['recipe5Label'], $data['recipe5Image'],
-        $data['recipe6Url'], $data['recipe6Label'], $data['recipe6Image']
-    )) {
+    if (
+        !$stmt->bind_param(
+            "ssssssssssssssssss",
+            $data['recipe1Url'],
+            $data['recipe1Label'],
+            $data['recipe1Image'],
+            $data['recipe2Url'],
+            $data['recipe2Label'],
+            $data['recipe2Image'],
+            $data['recipe3Url'],
+            $data['recipe3Label'],
+            $data['recipe3Image'],
+            $data['recipe4Url'],
+            $data['recipe4Label'],
+            $data['recipe4Image'],
+            $data['recipe5Url'],
+            $data['recipe5Label'],
+            $data['recipe5Image'],
+            $data['recipe6Url'],
+            $data['recipe6Label'],
+            $data['recipe6Image']
+        )
+    ) {
         echo json_encode(["success" => false, "message" => "Failed to bind recipe parameters: " . $stmt->error]);
         exit;
     }

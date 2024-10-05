@@ -133,15 +133,14 @@ document.getElementById("submit-weather-btn").addEventListener("click", function
 document.getElementById("submit-recipe-btn").addEventListener("click", function() {
   let recipeData = {
     data_type: 'recipe',
-    recipe1Label: document.getElementById("edit-recipe-title-1").value || document.getElementById("recipe-title-1").textContent,
-    recipe2Label: document.getElementById("edit-recipe-title-2").value || document.getElementById("recipe-title-2").textContent,
-    recipe3Label: document.getElementById("edit-recipe-title-3").value || document.getElementById("recipe-title-3").textContent,
-    recipe4Label: document.getElementById("edit-recipe-title-4").value || document.getElementById("recipe-title-4").textContent,
-    recipe5Label: document.getElementById("edit-recipe-title-5").value || document.getElementById("recipe-title-5").textContent,
-    recipe6Label: document.getElementById("edit-recipe-title-6").value || document.getElementById("recipe-title-6").textContent
+    recipe1Label: document.getElementById("edit-recipe-title-1").value || currentRecipeData.recipe1Label,
+    recipe2Label: document.getElementById("edit-recipe-title-2").value || currentRecipeData.recipe2Label,
+    recipe3Label: document.getElementById("edit-recipe-title-3").value || currentRecipeData.recipe3Label,
+    recipe4Label: document.getElementById("edit-recipe-title-4").value || currentRecipeData.recipe4Label,
+    recipe5Label: document.getElementById("edit-recipe-title-5").value || currentRecipeData.recipe5Label,
+    recipe6Label: document.getElementById("edit-recipe-title-6").value || currentRecipeData.recipe6Label
   };
 
-  // Post the recipe data to console for debugging purposes
   console.log("Edited Recipe data JSON Built:", recipeData);
 
   // Send the combined recipe data to PHP (using insertData.php)
@@ -200,6 +199,16 @@ function fetchAndDisplayRecipes() {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
+        // Store the current recipe data
+        currentRecipeData = {
+          recipe1Label: data.recipes.recipe1Label,
+          recipe2Label: data.recipes.recipe2Label,
+          recipe3Label: data.recipes.recipe3Label,
+          recipe4Label: data.recipes.recipe4Label,
+          recipe5Label: data.recipes.recipe5Label,
+          recipe6Label: data.recipes.recipe6Label
+        };
+
         const recipes = [
           { url: data.recipes.recipe1Url, label: data.recipes.recipe1Label, image: data.recipes.recipe1Image },
           { url: data.recipes.recipe2Url, label: data.recipes.recipe2Label, image: data.recipes.recipe2Image },

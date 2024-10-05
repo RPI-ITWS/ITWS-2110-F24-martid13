@@ -109,6 +109,9 @@ strong {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+  /* make sure all fit */
+  box-sizing: border-box;
+
 }
 
 #recipe-edit-container {

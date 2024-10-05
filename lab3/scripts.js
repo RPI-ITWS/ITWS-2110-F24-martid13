@@ -129,15 +129,31 @@ document.getElementById("submit-weather-btn").addEventListener("click", function
     });
 });
 
-// Handle recipe data submission
 document.getElementById("submit-recipe-btn").addEventListener("click", function() {
   let recipeData = {
     data_type: 'recipe',
+    recipe1Url: currentRecipeData.recipe1Url, // Keep the existing URL
+    recipe1Image: currentRecipeData.recipe1Image, // Keep the existing image
     recipe1Label: document.getElementById("edit-recipe-title-1").value || currentRecipeData.recipe1Label,
+
+    recipe2Url: currentRecipeData.recipe2Url,
+    recipe2Image: currentRecipeData.recipe2Image,
     recipe2Label: document.getElementById("edit-recipe-title-2").value || currentRecipeData.recipe2Label,
+
+    recipe3Url: currentRecipeData.recipe3Url,
+    recipe3Image: currentRecipeData.recipe3Image,
     recipe3Label: document.getElementById("edit-recipe-title-3").value || currentRecipeData.recipe3Label,
+
+    recipe4Url: currentRecipeData.recipe4Url,
+    recipe4Image: currentRecipeData.recipe4Image,
     recipe4Label: document.getElementById("edit-recipe-title-4").value || currentRecipeData.recipe4Label,
+
+    recipe5Url: currentRecipeData.recipe5Url,
+    recipe5Image: currentRecipeData.recipe5Image,
     recipe5Label: document.getElementById("edit-recipe-title-5").value || currentRecipeData.recipe5Label,
+
+    recipe6Url: currentRecipeData.recipe6Url,
+    recipe6Image: currentRecipeData.recipe6Image,
     recipe6Label: document.getElementById("edit-recipe-title-6").value || currentRecipeData.recipe6Label
   };
 
@@ -164,6 +180,7 @@ document.getElementById("submit-recipe-btn").addEventListener("click", function(
       console.error("Error:", error);
     });
 });
+
 
 
 function fetchAndDisplayWeather() {
@@ -201,12 +218,29 @@ function fetchAndDisplayRecipes() {
       if (data.success) {
         // Store the current recipe data
         currentRecipeData = {
+          recipe1Url: data.recipes.recipe1Url,
           recipe1Label: data.recipes.recipe1Label,
+          recipe1Image: data.recipes.recipe1Image,
+
+          recipe2Url: data.recipes.recipe2Url,
           recipe2Label: data.recipes.recipe2Label,
+          recipe2Image: data.recipes.recipe2Image,
+
+          recipe3Url: data.recipes.recipe3Url,
           recipe3Label: data.recipes.recipe3Label,
+          recipe3Image: data.recipes.recipe3Image,
+
+          recipe4Url: data.recipes.recipe4Url,
           recipe4Label: data.recipes.recipe4Label,
+          recipe4Image: data.recipes.recipe4Image,
+
+          recipe5Url: data.recipes.recipe5Url,
           recipe5Label: data.recipes.recipe5Label,
-          recipe6Label: data.recipes.recipe6Label
+          recipe5Image: data.recipes.recipe5Image,
+
+          recipe6Url: data.recipes.recipe6Url,
+          recipe6Label: data.recipes.recipe6Label,
+          recipe6Image: data.recipes.recipe6Image
         };
 
         const recipes = [

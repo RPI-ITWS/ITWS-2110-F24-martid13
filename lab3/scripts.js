@@ -104,18 +104,6 @@ document.getElementById("submit-weather-btn").addEventListener("click", function
     temp_min: document.getElementById("edit-weather-temp-min").value || document.getElementById("temp-min").textContent.replace('°F', ''),
     temp_max: document.getElementById("edit-weather-temp-max").value || document.getElementById("temp-max").textContent.replace('°F', '')
   };
-
-  // const weatherData = {
-  //   data_type: 'weather',
-  //   condition: data.weather[0].main,
-  //   description: data.weather[0].description,
-  //   icon: iconUrl,
-  //   temp: data.main.temp,
-  //   feels_like: data.main.feels_like,
-  //   temp_min: data.main.temp_min,
-  //   temp_max: data.main.temp_max
-  //   };
-
   // post the weather data to console
   console.log("Edited Weather data JSON Built:", weatherData);
 
@@ -140,6 +128,44 @@ document.getElementById("submit-weather-btn").addEventListener("click", function
       console.error("Error:", error);
     });
 });
+
+// Handle recipe data submission
+document.getElementById("submit-recipe-btn").addEventListener("click", function() {
+  let recipeData = {
+    data_type: 'recipe',
+    recipe1Label: document.getElementById("edit-recipe-title-1").value || document.getElementById("recipe-title-1").textContent,
+    recipe2Label: document.getElementById("edit-recipe-title-2").value || document.getElementById("recipe-title-2").textContent,
+    recipe3Label: document.getElementById("edit-recipe-title-3").value || document.getElementById("recipe-title-3").textContent,
+    recipe4Label: document.getElementById("edit-recipe-title-4").value || document.getElementById("recipe-title-4").textContent,
+    recipe5Label: document.getElementById("edit-recipe-title-5").value || document.getElementById("recipe-title-5").textContent,
+    recipe6Label: document.getElementById("edit-recipe-title-6").value || document.getElementById("recipe-title-6").textContent
+  };
+
+  // Post the recipe data to console for debugging purposes
+  console.log("Edited Recipe data JSON Built:", recipeData);
+
+  // Send the combined recipe data to PHP (using insertData.php)
+  fetch("insertData.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(recipeData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log("Recipe data inserted successfully:", data);
+        fetchAndDisplayRecipes(); // Fetch and display the updated recipes
+      } else {
+        console.error("Error inserting recipe data:", data.message);
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+});
+
 
 function fetchAndDisplayWeather() {
   console.log("Called fetchAndDisplayWeather()");

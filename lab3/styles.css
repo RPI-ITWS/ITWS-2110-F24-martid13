@@ -100,6 +100,7 @@ strong {
   display: flex;
   justify-content: center;
   gap: 10px; /* Adds space between inputs */
+  padding: 15px;
 }
 
 .inline-inputs input {

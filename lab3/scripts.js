@@ -269,7 +269,7 @@ document
 
     // Fetch weather data from the API
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=0aaa0764d80ad5fd33dca15393bce371&units=imperial"
+      "https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=f4a08a9c72d991c4e86ba7011da19adc&units=imperial"
     )
       .then((response) => response.json())
       .then((data) => {

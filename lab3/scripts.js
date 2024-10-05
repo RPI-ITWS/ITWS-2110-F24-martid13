@@ -96,14 +96,25 @@ document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6
 document.getElementById("submit-weather-btn").addEventListener("click", function() {
   let weatherData = {
     data_type: 'weather',
-    weather_condition: document.getElementById("edit-weather-condition").value || document.getElementById("weather-main").textContent,
-    weather_description: document.getElementById("edit-weather-description").value || document.getElementById("weather-description").textContent,
-    weather_icon_src: document.getElementById("edit-weather-icon").value || document.getElementById("weather-icon").src,
-    temperature: document.getElementById("edit-weather-temp").value || document.getElementById("temp").textContent.replace('°F', ''),
+    condition: document.getElementById("edit-weather-condition").value || document.getElementById("weather-main").textContent,
+    description: document.getElementById("edit-weather-description").value || document.getElementById("weather-description").textContent,
+    icon: document.getElementById("edit-weather-icon").value || document.getElementById("weather-icon").src,
+    temp: document.getElementById("edit-weather-temp").value || document.getElementById("temp").textContent.replace('°F', ''),
     feels_like: document.getElementById("edit-weather-feels-like").value || document.getElementById("feels-like").textContent.replace('°F', ''),
     temp_min: document.getElementById("edit-weather-temp-min").value || document.getElementById("temp-min").textContent.replace('°F', ''),
     temp_max: document.getElementById("edit-weather-temp-max").value || document.getElementById("temp-max").textContent.replace('°F', '')
   };
+
+  // const weatherData = {
+  //   data_type: 'weather',
+  //   condition: data.weather[0].main,
+  //   description: data.weather[0].description,
+  //   icon: iconUrl,
+  //   temp: data.main.temp,
+  //   feels_like: data.main.feels_like,
+  //   temp_min: data.main.temp_min,
+  //   temp_max: data.main.temp_max
+  //   };
 
   // post the weather data to console
   console.log("Edited Weather data JSON Built:", weatherData);

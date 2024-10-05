@@ -369,14 +369,3 @@ document
       });
   });
 
-fetch(
-  "https://api.openweathermap.org/data/2.5/weather?lat=42.728104&lon=-73.687576&appid=0aaa0764d80ad5fd33dca15393bce371&units=imperial"
-)
-  .then((response) => response.json())
-  .then((data) => {
-    // log the json data to the console
-    console.log(data);
-
-    const weatherCondition = data.weather[0].main;
-    console.log("Weather condition:", weatherCondition);
-  });

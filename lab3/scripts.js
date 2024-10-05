@@ -57,52 +57,6 @@ document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6
 // });
 
 
-function updateWeatherData() {
-  // Safely get the value of each field or fallback to the displayed value in the HTML
-  const weatherConditionInput = document.getElementById("edit-weather-condition");
-  const weatherDescriptionInput = document.getElementById("edit-weather-description");
-  const weatherIconInput = document.getElementById("edit-weather-icon");
-  const weatherTempInput = document.getElementById("edit-weather-temp");
-  const weatherFeelsLikeInput = document.getElementById("edit-weather-feels-like");
-  const weatherTempMinInput = document.getElementById("edit-weather-temp-min");
-  const weatherTempMaxInput = document.getElementById("edit-weather-temp-max");
-
-  // Build the weather data object, checking if the input exists before using its value
-  let weatherData = {
-    data_type: 'weather',
-    weather_condition: weatherConditionInput ? weatherConditionInput.value : document.getElementById("weather-main").textContent,
-    weather_description: weatherDescriptionInput ? weatherDescriptionInput.value : document.getElementById("weather-description").textContent,
-    weather_icon_src: weatherIconInput ? weatherIconInput.value : document.getElementById("weather-icon").src,
-    temperature: weatherTempInput ? weatherTempInput.value : document.getElementById("temp").textContent.replace('°F', ''),
-    feels_like: weatherFeelsLikeInput ? weatherFeelsLikeInput.value : document.getElementById("feels-like").textContent.replace('°F', ''),
-    temp_min: weatherTempMinInput ? weatherTempMinInput.value : document.getElementById("temp-min").textContent.replace('°F', ''),
-    temp_max: weatherTempMaxInput ? weatherTempMaxInput.value : document.getElementById("temp-max").textContent.replace('°F', '')
-  };
-
-  console.log("Weather data being sent:", weatherData); // Log for debugging purposes
-
-  // Send the combined weather data to PHP (using insertData.php)
-  fetch("insertData.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(weatherData)
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        console.log("Weather data inserted successfully:", data);
-        fetchAndDisplayWeather(); // Fetch and display the updated weather
-      } else {
-        console.error("Error inserting weather data:", data.message);
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
-}
-
 
 
 // function updateRecipeData() {
@@ -138,23 +92,43 @@ function updateWeatherData() {
 //     });
 // }
 
+// Handle weather data submission
+document.getElementById("submit-weather-btn").addEventListener("click", function() {
+  let weatherData = {
+    data_type: 'weather',
+    weather_condition: document.getElementById("edit-weather-condition").value || document.getElementById("weather-main").textContent,
+    weather_description: document.getElementById("edit-weather-description").value || document.getElementById("weather-description").textContent,
+    weather_icon_src: document.getElementById("edit-weather-icon").value || document.getElementById("weather-icon").src,
+    temperature: document.getElementById("edit-weather-temp").value || document.getElementById("temp").textContent.replace('°F', ''),
+    feels_like: document.getElementById("edit-weather-feels-like").value || document.getElementById("feels-like").textContent.replace('°F', ''),
+    temp_min: document.getElementById("edit-weather-temp-min").value || document.getElementById("temp-min").textContent.replace('°F', ''),
+    temp_max: document.getElementById("edit-weather-temp-max").value || document.getElementById("temp-max").textContent.replace('°F', '')
+  };
 
-// Event listener for Enter key press on both weather and recipe input fields
-document.querySelectorAll('.inline-inputs input').forEach(input => {
-  input.addEventListener('keydown', function(event) {
-    if (event.key === "Enter") {
-      // Check if the input belongs to weather or recipe
-      if (this.id.startsWith('edit-weather')) {
-        console.log("Weather field edited. Calling updateWeatherData...");
-        updateWeatherData(); // Call updateWeatherData when Enter is pressed in weather fields
-      } else if (this.id.startsWith('edit-recipe')) {
-        console.log("Recipe field edited. Calling updateRecipeData...");
-        updateRecipeData(); // Call updateRecipeData when Enter is pressed in recipe fields
+  // post the weather data to console
+  console.log("Edited Weather data JSON Built:", weatherData);
+
+  // Send the combined weather data to PHP (using insertData.php)
+  fetch("insertData.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(weatherData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log("Weather data inserted successfully:", data);
+        fetchAndDisplayWeather(); // Fetch and display the updated weather
+      } else {
+        console.error("Error inserting weather data:", data.message);
       }
-    }
-  });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
 });
-
 
 function fetchAndDisplayWeather() {
   console.log("Called fetchAndDisplayWeather()");

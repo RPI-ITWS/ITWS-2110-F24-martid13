@@ -1,113 +1,150 @@
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+/* Base styling */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
+body {
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Navbar styling */
+.navbar {
   padding: 20px;
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Header Styling */
-h1 {
-  font-size: 2.5rem;
+.navbar-brand {
+  font-size: 28px;
+  color: #f8b400;
+  font-weight: bold;
+}
+
+/* Hero section */
+.hero-section {
+  background-color: #1c1c1c;
+  padding: 60px 0;
+  text-align: center;
+  color: #f0f0f0;
+}
+
+.hero-section h2 {
+  font-size: 32px;
   margin-bottom: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-/* Button Animations */
-button.btn-animated {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
+.btn {
+  padding: 12px 24px;
+  border-radius: 50px;
   font-size: 16px;
-  border-radius: 5px;
-  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-button.btn-animated:hover {
-  background-color: #0056b3;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
+.primary-btn {
+  background-color: #f8b400;
+  color: #0f0f0f;
 }
 
-button.btn-animated:active {
-  transform: scale(0.98);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+.primary-btn:hover {
+  background-color: #ffa500;
 }
 
-button.btn-success {
-  background-color: #28a745;
+.secondary-btn {
+  background-color: #4ecca3;
+  color: #0f0f0f;
 }
 
-button.btn-success:hover {
-  background-color: #218838;
+.secondary-btn:hover {
+  background-color: #3ba183;
 }
 
-/* Weather Section */
-.weather-container {
+/* Section styling */
+.section {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #444;
+  background-color: #222;
+  color: #f0f0f0;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #f8b400;
+}
+
+/* Data display section */
+.data-display {
+  padding: 50px;
   display: flex;
   justify-content: space-around;
-  padding: 20px;
 }
 
-.weather-info,
-.temperature-info {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  width: 40%;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+.weather-display,
+.recipe-display {
+  width: 45%;
 }
 
-.weather-info:hover,
-.temperature-info:hover {
-  transform: translateY(-10px);
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-p {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-img {
-  width: 100px;
-  height: 100px;
-}
-
-/* Recipes Section */
-.recipes-container {
-  margin-top: 40px;
-}
-
-#recipe-container .col-md-2 {
-  margin-bottom: 20px;
-}
-
+.weather-card,
 .card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  margin: 10px 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+}
+
+.card-grid .card {
+  padding: 15px;
+  border-radius: 12px;
+  background-color: #2e2e2e;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
 }

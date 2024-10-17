@@ -6,124 +6,114 @@
 }
 
 body {
-  background-color: #0f0f0f;
-  color: #f0f0f0;
-  font-family: 'Poppins', sans-serif;
-  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* Navbar styling */
-.navbar {
-  padding: 20px;
-  background-color: #222;
+/* Page Container */
+.page-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 20%;
+  background-color: #1b1f23;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btn {
+  padding: 8px 18px; /* Smaller buttons */
+  font-size: 14px; /* Reduced font size */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.primary-btn {
+  background-color: #61dafb;
+  color: #333;
+}
+
+.primary-btn:hover {
+  background-color: #5bc0de;
+}
+
+.secondary-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.secondary-btn:hover {
+  background-color: #218838;
+}
+
+/* Content Area */
+.content-area {
+  width: 80%;
+  padding: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.navbar-brand {
-  font-size: 28px;
-  color: #f8b400;
-  font-weight: bold;
-}
-
-/* Hero section */
-.hero-section {
-  background-color: #1c1c1c;
-  padding: 60px 0;
-  text-align: center;
-  color: #f0f0f0;
-}
-
-.hero-section h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.btn {
-  padding: 12px 24px;
-  border-radius: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.primary-btn {
-  background-color: #f8b400;
-  color: #0f0f0f;
-}
-
-.primary-btn:hover {
-  background-color: #ffa500;
-}
-
-.secondary-btn {
-  background-color: #4ecca3;
-  color: #0f0f0f;
-}
-
-.secondary-btn:hover {
-  background-color: #3ba183;
-}
-
-/* Section styling */
-.section {
-  padding: 40px 0;
-  text-align: center;
-}
-
-.section h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-}
-
-.grid-form {
+.content-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  max-width: 900px;
-  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  width: 100%;
 }
 
-input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 2px solid #444;
-  background-color: #222;
-  color: #f0f0f0;
-  outline: none;
-  transition: border 0.3s ease;
-}
-
-input:focus {
-  border-color: #f8b400;
-}
-
-/* Data display section */
-.data-display {
-  padding: 50px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.weather-display,
-.recipe-display {
-  width: 45%;
-}
-
-.weather-card,
-.card {
-  background-color: #1e1e1e;
+.weather-section,
+.recipe-section {
+  background: linear-gradient(135deg, #2c3e50, #4a6273);
   padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #34495e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   text-align: center;
+  color: #ecf0f1;
 }
 
 .card img {
@@ -138,13 +128,54 @@ input:focus {
   gap: 20px;
 }
 
-.card-grid .card {
-  padding: 15px;
-  border-radius: 12px;
-  background-color: #2e2e2e;
+.grid-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 80%;
+  justify-content: center;
 }
 
+input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease;
+  text-align: center;
+}
+
+input:focus {
+  border-color: #61dafb;
+}
+
+.edit-fields {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-fields button {
+  margin-top: 15px; /* Adjusted margin for better spacing */
+  padding: 10px 20px; /* Smaller size */
+  font-size: 14px; /* Reduced font size */
+  border-radius: 25px;
+}
+
+/* Custom card shadow and hover effect */
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   transition: transform 0.3s ease;
+}
+
+/* Center the Submit Recipe Changes Button */
+.recipe-section .edit-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -29,6 +29,9 @@ body {
   padding: 20px;
   background-color: #1b1f23;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures even spacing */
 }
 
 .brand-title {
@@ -82,6 +85,12 @@ body {
   color: #ffffff;
 }
 
+.instruction {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #cccccc;
+}
+
 .grid-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -109,7 +118,9 @@ input:focus {
 .right-column {
   width: 60%;
   padding: 40px;
-  background-color: #f7f7f7;
+  background-image: url('https://source.unsplash.com/random'); /* Unsplash background */
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -118,7 +129,7 @@ input:focus {
 
 .weather-display,
 .recipe-display {
-  background: linear-gradient(135deg, #2c3e50, #4a6273);
+  background: rgba(44, 62, 80, 0.8); /* Semi-transparent background */
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);

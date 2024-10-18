@@ -317,7 +317,7 @@ document
     fetch(
       "https://api.edamam.com/api/recipes/v2?type=public&q=$troy&app_id=47bdc2de&app_key=1925e691726351bfb627b4d25a96b277"
     )
-      //fetch("recipies.json")
+      // fetch("recipies.json")
       .then((response) => response.json())
       .then((data) => {
         const recipes = data.hits.slice(0, 6); // Get first 6 recipes

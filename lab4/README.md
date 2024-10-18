@@ -6,6 +6,8 @@ OpenWeatherMap API: https://openweathermap.org/current
 Unsplash API: https://unsplash.com/
 Edamam Recpie Creator API: https://www.edamam.com/
 
+Subset: landing page layout/UI/styling
+
 AI Prompts:
 
 < lab 2 original assignment fed to chatgpt to get baseline structure >
@@ -22,7 +24,13 @@ Generate JavaScript code that fetches seasonal recipe data and displays it in th
 
 Align the input fields and submit buttons in each section (weather and recipes) side by side in the left column. Ensure proper spacing between the fields and buttons to keep the layout clean.
 
-Add CSS styling to include hover effects for the submit buttons, making them change color when hovered over. Also, add slight transitions to make the user interaction smoother.
+< created ugly off centered layout >
+
+Make the submit buttonts centered in their respective column, so that everything is nice and tidy
+
+Add CSS styling to include hover effects for the submit buttons, making them change color when hovered over. Also, add slight transitions to make the user interaction smoother
+
+< this CSS broke my unsplash API background image >
 
 Adjust the spacing between the weather and recipe sections in the right column and ensure that all content is properly aligned and spaced. Add padding around the content to create a clean layout.
 

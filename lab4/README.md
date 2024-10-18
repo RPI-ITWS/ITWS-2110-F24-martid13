@@ -34,5 +34,7 @@ Add CSS styling to include hover effects for the submit buttons, making them cha
 
 Adjust the spacing between the weather and recipe sections in the right column and ensure that all content is properly aligned and spaced. Add padding around the content to create a clean layout.
 
+Enable scrolling on the whole page.
+
 Zap Report
 ![ZAP Report (no red flags) ](image.png)

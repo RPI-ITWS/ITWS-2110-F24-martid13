@@ -3,13 +3,7 @@ console.log("JavaScript file is successfully linked and running!");
 // dummy background image
 document.body.style.backgroundImage = `url('${"https://collegevine.imgix.net/dd6ac0d3-2026-4e7f-8310-e2d7a15b0027.jpg"}')`;
 
-fetch(
-  "https://api.unsplash.com/photos/random/?client_id=kGehtlR3bOADWbEr6gnMCBVvv8ObPbzuU7hFTB7_yKs"
-)
-  .then((response) => response.json())
-  .then((data) => {
-    document.body.style.backgroundImage = `url('${data.urls.regular}')`;
-  });
+
 // Handle weather data submission
 document
   .getElementById("submit-weather-btn")
@@ -369,3 +363,11 @@ document
       });
   });
 
+
+  fetch(
+    "https://api.unsplash.com/photos/random/?client_id=kGehtlR3bOADWbEr6gnMCBVvv8ObPbzuU7hFTB7_yKs"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      document.body.style.backgroundImage = `url('${data.urls.regular}')`;
+    });

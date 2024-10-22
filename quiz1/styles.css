@@ -11,7 +11,10 @@ h1 {
 .weather-container, .random-image-container, .exchange-table-container {
     background: white;
     padding: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     margin-top: 20px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }

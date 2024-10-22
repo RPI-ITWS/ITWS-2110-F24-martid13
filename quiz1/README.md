@@ -10,3 +10,5 @@ Sources:
     - OpenWeatherMap: https://openweathermap.org/api
     - Unplash: https://unsplash.com/developers
     - Bootstrap CSS: https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js
+
+Link to page: http://martid13.eastus.cloudapp.azure.com/ITWS-2110-F24-martid13/quiz1/

@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <!-- Weather Section -->
+        <!--Weather-->
         <div class="row weather-container">
             <div class="col-md-12">
                 <h2 class="text-center">Current Weather in Troy, NY</h2>
@@ -66,13 +66,13 @@
 
     <script>
         document.getElementById('fetch-frankfurter').addEventListener('click', function () {
-        // Fetch the Frankfurter API data
+        // Fetch the Frankfurter API
         fetch('https://api.frankfurter.app/latest')
             .then(response => response.json())
             .then(data => {
                 console.log('API data fetched:', data);
 
-                // Now send the fetched data to the PHP script to store it in the database
+                // Send the fetched data to the PHP script to store it in the database
                 fetch('store.php', {
                     method: 'POST',
                     headers: {
@@ -84,7 +84,7 @@
                 .then(result => {
                     console.log('Data stored in database:', result);
 
-                    // After data is stored, retrieve the updated table and display it
+                    // After data is stored, retrieve the table and display it
                     fetch('retrieve.php')
                         .then(response => response.text())
                         .then(tableHtml => {

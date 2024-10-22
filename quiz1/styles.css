@@ -9,7 +9,7 @@ h1 {
 }
 
 .weather-container, .random-image-container, .exchange-table-container {
-    background: white;
+    background: rgb(169, 158, 158);
     padding: 20px;
     transition: background-color 0.3s ease, transform 0.3s ease;
     margin-top: 20px;

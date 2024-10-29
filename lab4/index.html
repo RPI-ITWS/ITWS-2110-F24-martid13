@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather & Recipes</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="page-container">
+      <!-- Left Column for Actions and Editing -->
+      <div class="left-column">
+        <nav class="sidebar">
+          <h1 class="brand-title">Weather & Recipes</h1>
+          <div class="action-buttons">
+            <button id="fetchWeatherBtn" class="btn primary-btn">Fetch Weather</button>
+            <button id="fetchRecipeBtn" class="btn secondary-btn">Get Recipes</button>
+          </div>
+        </nav>
+
+        <!-- Weather Edit Section -->
+        <section class="edit-section">
+          <h2>Edit Weather</h2>
+          <p class="instruction">Update the weather information by entering the values below:</p>
+          <div class="inline-form">
+            <input type="text" id="edit-weather-condition" placeholder="Condition" />
+            <input type="text" id="edit-weather-description" placeholder="Description" />
+            <input type="text" id="edit-weather-icon" placeholder="Icon URL" />
+            <input type="text" id="edit-weather-temp" placeholder="Temperature" />
+            <input type="text" id="edit-weather-feels-like" placeholder="Feels Like" />
+            <input type="text" id="edit-weather-temp-min" placeholder="Min Temp" />
+            <input type="text" id="edit-weather-temp-max" placeholder="Max Temp" />
+            <button id="submit-weather-btn" class="btn primary-btn">Submit Weather</button>
+          </div>
+        </section>
+
+        <!-- Recipe Edit Section -->
+        <section class="edit-section">
+          <h2>Edit Recipes</h2>
+          <p class="instruction">Modify the recipe titles based on the weather:</p>
+          <div class="inline-form">
+            <input type="text" id="edit-recipe-title-1" placeholder="Recipe 1" />
+            <input type="text" id="edit-recipe-title-2" placeholder="Recipe 2" />
+            <input type="text" id="edit-recipe-title-3" placeholder="Recipe 3" />
+            <input type="text" id="edit-recipe-title-4" placeholder="Recipe 4" />
+            <input type="text" id="edit-recipe-title-5" placeholder="Recipe 5" />
+            <input type="text" id="edit-recipe-title-6" placeholder="Recipe 6" />
+            <button id="submit-recipe-btn" class="btn secondary-btn">Submit Recipes</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column for Displaying Weather and Recipes -->
+      <div class="right-column">
+        <section class="weather-display">
+          <h2>Weather Information</h2>
+          <div class="card weather-card">
+            <p><strong>Condition:</strong> <span id="weather-main">Clear</span></p>
+            <p><strong>Description:</strong> <span id="weather-description">Sunny</span></p>
+            <img id="weather-icon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather Icon" />
+            <p><strong>Temperature:</strong> <span id="temp">75°F</span></p>
+            <p><strong>Feels Like:</strong> <span id="feels-like">74°F</span></p>
+            <p><strong>Min Temp:</strong> <span id="temp-min">70°F</span></p>
+            <p><strong>Max Temp:</strong> <span id="temp-max">80°F</span></p>
+          </div>
+        </section>
+
+        <!-- Recipe Display Section -->
+        <section class="recipe-display">
+          <h2>Recipes Based on Weather</h2>
+          <div id="recipe-container" class="card-grid"></div>
+        </section>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

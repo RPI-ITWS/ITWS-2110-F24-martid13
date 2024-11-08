@@ -17,8 +17,16 @@
 
 ### Post-reading Implementation:
 - reviewed azure user priviledges (zero-trust), all users have minimum priviledges possible.
+    - made no changes but was unaware of certain users having admin priviledges on my VM.
+        - josh cherry, jason purificato, timilehin mojisola. (will further investigate these users(?))
 - review user priviledges via chmod, all in check there.
 - look over Azure Security Center.
+    - was blocked out of certain pages due to user priviledges.
 - not able to find way to do local backup.
 - not able to locate security alert system on Azure.
 - choose not to use 2FA because of the low level of sensitivity of the data contained on my personal VM.
+- double checked my encryption level. default is encryption-at-rest with a platform managed key.
+    - adequate for my uses and data sensitivity.
+- looked over my external resources on my VM to check third-party influence, all in check. 
+    - repositories are listed.
+- enabled system assigned managed identity.

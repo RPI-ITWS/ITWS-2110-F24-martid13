@@ -179,7 +179,7 @@ button#submit-recipe-btn:hover {
   margin-top: 10px;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness
 @media only screen and (max-width: 768px) {
   .weather-info,
   .temperature-info,
@@ -195,4 +195,4 @@ button#submit-recipe-btn:hover {
   .card {
     width: 100%;
   }
-}
+} */

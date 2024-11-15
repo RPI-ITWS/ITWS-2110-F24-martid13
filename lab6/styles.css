@@ -180,7 +180,7 @@ button#submit-recipe-btn:hover {
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .weather-info,
   .temperature-info,
   .misc-info {

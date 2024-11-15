@@ -35,7 +35,8 @@
     - I changed the names of my fetch buttons in hopes of making it more clear to the user what these buttons do. I think "Load" is a more standard and understood word, anyways. 
 
 ## Desirable
-  - ### My Website:
+  - ### My Website: 
+    - I think this is where my recipe creation feature comes in. If the site was just weather, theres a million other sources for that information. What makes mine desirable is you receive location-based recipe suggestions. 
 
   - ### Relevant UX Law(s):
     - <b>Aesthetic-Usability Effect: </b>Attractive designs are perceived as more usable, making them more desirable.

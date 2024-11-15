@@ -47,9 +47,11 @@
     - <b>Zeigarnik Effect: </b>Leveraging interruptions to create anticipation or curiosity makes the product more engaging.
 
   - ### Implementation(s):
+    - I tried querying the weather condition into the edamam recipe API call but was met with security rejections. I guess edamam does not allow this type of operation, or I am not formatting it correctly. I will continue to work on this change because I think it signifigantly bumps desirability.
 
 ## Findable
   - ### My Website:
+    - I think my website is generally easy to navigate and locate relevant features. Maybe I could make the editing feature smaller on the screen so users can understand more clearly what the functional features of the site are (displaying data rather than allowing you to edit it)
 
   - ### Relevant UX Law(s):
     - <b>Selective Attention: </b>Designing to highlight important elements helps users find what they’re looking for.
@@ -57,10 +59,11 @@
     - <b>Law of Prägnanz: </b>Simplifying information helps users locate what they need efficiently.
 
   ### Implementation(s):
+- Reformat and slightly decrease sizing of editing section for better findability of more useful data, like the weather information and recipes.
 
 ## Accessible
   - ### My Website:
-
+    - One area I am not sure of is mobile performance. I believe bootstrap should take care of most of that, and that I the only images I am using are the ones loaded in from the APIs, as well as proper DOM loading order.
   - ### Relevant UX Law(s):
     - <b>Cognitive Load: </b>Reducing the mental effort required to interact with a system ensures accessibility.
     - <b>Working Memory: </b>Designing interfaces that don’t overwhelm short-term memory enhances accessibility.
@@ -68,6 +71,7 @@
     - <b>Jakob’s Law: </b>Designing based on familiar patterns reduces the learning curve, making systems more accessible.
 
   ### Implementation(s):
+  - I altered the media max width for better mobile performance. 
 
 ## Credible
   - ### My Website:

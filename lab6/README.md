@@ -1,7 +1,8 @@
 # Lab 6 - Morville's Honeycomb
 ## Useful
-  - ### My Website:
-    - I adjusted the spacing of my edit fields so that the user can more easily read what they are editing by clicking on them.
+  - ### My Website: 
+    - My website is useful because of its utilitarian simplicity. I provide two features, with the added ability to edit weather data. This website is useful mainly for the weather feature, but the recipe feature is more just for fun.
+    
   - ### Relevant UX Law(s):
     - <b>Flow</b>: </b>Encouraging a state of immersion enhances the usefulness of an interface by keeping users engaged.
     - <b>Paradox of the Active User: </b> </b>Users dive straight into using a product without reading manuals, so making a product intuitive is essential.
@@ -10,10 +11,12 @@
     - <b>Endowed Progress Effect: </b>Users are more likely to complete a task if they feel they’ve made progress.
       
   ### Implementation(s):
+  - I adjusted the spacing of my edit fields so that the user can more easily read what they are editing by clicking on them.
   
 ## Usable
 
   - ## My Website:
+    - My website is very usable, with clear affordances to the user on what does what. With the two buttons "fetch weather data" and "fetch recipes", it is clear to the user what to press here to retrieve the information. 
 
   - ## Relevant UX Law(s):
 
@@ -29,6 +32,7 @@
     - <b>Postel’s Law: </b>Being flexible in what the system accepts ensures smoother user interactions.
 
   - ### Implementation(s):
+    - I changed the names of my fetch buttons in hopes of making it more clear to the user what these buttons do. I think "Load" is a more standard and understood word, anyways. 
 
 ## Desirable
   - ### My Website:

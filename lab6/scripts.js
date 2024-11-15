@@ -276,7 +276,7 @@ document
         // make the weather stuff array here (parse it)
         let iconCode = data.weather[0].icon;
         let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-        let weatherCondition = data.weather[0].main;
+        let weatherCondition = data.weather[0].main
         const weatherData = {
           data_type: "weather",
           condition: data.weather[0].main,
@@ -316,7 +316,7 @@ document
     // fetch the recipe data
     console.log("Fetching recipe data...");
     fetch(
-      "https://api.edamam.com/api/recipes/v2?type=public&q=${weatherCondition}&app_id=47bdc2de&app_key=1925e691726351bfb627b4d25a96b277"
+      "https://api.edamam.com/api/recipes/v2?type=public&q=$cloudy&app_id=47bdc2de&app_key=1925e691726351bfb627b4d25a96b277"
     )
       //fetch("recipies.json")
       .then((response) => response.json())

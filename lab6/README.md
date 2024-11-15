@@ -75,6 +75,7 @@
 
 ## Credible
   - ### My Website:
+   - Personally one area I feel my site is lacking in is a short description of what the site does. For utilitarian sites, such as those displaying practical data like weather, I like it when the site immediately discloses what it is intended to be used for, as well as a quick mention of the author for added credibility.
 
   - ### Relevant UX Law(s):
     - <b>Pareto Principle: </b>Focusing on the most impactful 20% of features ensures users see value, enhancing credibility.
@@ -82,6 +83,7 @@
     - <b>Law of Uniform Connectedness: </b>Connecting related information visually improves clarity and credibility.
 
   - ### Implementation(s):
+- added small subheader to the main title telling the user what the site is for, and the author's name.
 
 ## Valuable
   - ### My Website:

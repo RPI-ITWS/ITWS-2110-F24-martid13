@@ -19,6 +19,11 @@ h1 {
   margin-bottom: 20px;
   text-align: center;
 }
+h2 {
+  margin-top: 20px;
+  scale: .75;
+  text-align: center;
+}
 
 /* Weather Container Styling */
 .weather-container {

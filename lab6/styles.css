@@ -1,0 +1,205 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1400px; /* Reduced max-width for better focus */
+  margin: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+h2 {
+  margin-top: 20px;
+  scale: .75;
+  text-align: center;
+}
+
+/* Weather Container Styling */
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.weather-info,
+.temperature-info,
+.misc-info {
+  width: 48%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.weather-info img {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin: 10px auto;
+}
+
+.weather-info h2,
+.temperature-info h2,
+.misc-info h2 {
+  font-size: 16px; /* Reduced font size */
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px; /* Reduced font size for better compactness */
+  color: #555;
+  margin: 5px 0;
+}
+
+strong {
+  color: #333;
+}
+
+/* Recipes Container Styling */
+.recipes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Updated Card Styling */
+.card {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+/* Ensure images maintain their aspect ratio */
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* Ensures the image covers the card area without distortion */
+  border-radius: 4px;
+}
+
+/* Styling for recipe titles */
+.card-title {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 8px;
+  color: #333;
+}
+
+
+/* Styling for Editing Fields */
+.inline-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px; /* Reduced space between inputs */
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.inline-inputs input {
+  width: 120px; /* Reduced width of input fields */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.inline-inputs button {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-top: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inline-inputs button:hover {
+  background-color: #0056b3;
+}
+
+/* Specific Styling for Weather and Recipe Submit Buttons */
+button#submit-weather-btn {
+  background-color: #17a2b8;
+}
+
+button#submit-weather-btn:hover {
+  background-color: #117a8b;
+}
+
+button#submit-recipe-btn {
+  background-color: #28a745;
+}
+
+button#submit-recipe-btn:hover {
+  background-color: #1e7a34;
+}
+
+/* Miscellaneous Info Styling */
+.misc-info {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.misc-info h2 {
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.placeholder-image {
+  height: 150px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+}
+
+.placeholder-title {
+  color: #cccccc;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Mobile Responsiveness*/
+@media only screen and (max-width: 768px) {
+  .weather-info,
+  .temperature-info,
+  .misc-info {
+    width: 100%;
+  }
+  
+  .inline-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card {
+    width: 100%;
+  }
+} 

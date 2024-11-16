@@ -83,10 +83,13 @@
     - <b>Law of Uniform Connectedness: </b>Connecting related information visually improves clarity and credibility.
 
   - ### Implementation(s):
-- added small subheader to the main title telling the user what the site is for, and the author's name.
+     - added small subheader to the main title telling the user what the site is for, and the author's name.
 
 ## Valuable
-  - ### My Website:
+  - ### My Website: 
+    - I believe my website provides value to a very very specific kind of person who is simultaneously seeking weather and recipe information. I think for this rare person, my site is great. For the average, the site is not very valuable compared to other weather sites. I don't think "value" is core to this site at all, its more of a fun site to test features. Without a full overhaul or additional features, I don't think I can easily add value to this site. 
+
+        At the very minimum, I can provide a link to a reputable weather source for more detailed information. 
 
   - ### Relevant UX Law(s):
     - <b>Parkinson’s Law: </b>Avoiding feature bloat and focusing on delivering value within time constraints enhances perceived value.
@@ -94,3 +97,4 @@
     - <b>Cognitive Bias: </b>Understanding and leveraging cognitive biases can enhance the perceived value of a product.
 
   - ### Implementation(s):
+     -  Added reference to external weather site for the curious user. 

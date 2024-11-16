@@ -98,3 +98,10 @@
 
   - ### Implementation(s):
      -  Added reference to external weather site for the curious user. 
+
+
+
+### Sources: 
+- https://lawsofux.com/
+- lab page
+- https://danewesolko.medium.com/peter-morvilles-user-experience-honeycomb-904c383b6886

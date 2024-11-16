@@ -77,26 +77,33 @@ strong {
   justify-content: space-between;
 }
 
+/* Updated Card Styling */
 .card {
-  /* width: 30%; */
-  /* margin-bottom: 15px;
-  padding: 8px; */
+  width: 30%;
+  margin-bottom: 15px;
+  padding: 8px;
   border-radius: 6px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensure content doesn't overflow */
 }
 
-/* .card img {
+/* Ensure images maintain their aspect ratio */
+.card img {
   width: 100%;
   height: auto;
+  display: block;
+  object-fit: cover; /* Ensures the image covers the card area without distortion */
   border-radius: 4px;
-} */
+}
 
+/* Styling for recipe titles */
 .card-title {
   font-size: 14px;
   text-align: center;
   margin-top: 8px;
   color: #333;
 }
+
 
 /* Styling for Editing Fields */
 .inline-inputs {
